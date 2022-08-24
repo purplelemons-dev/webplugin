@@ -1,0 +1,3 @@
+name: WebPlugin
+main: group.thebasement.plugins.webplugin.WebPlugin
+version: 0.0.1

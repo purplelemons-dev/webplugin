@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Info Page</title>
+</head>
+<body>
+    <h1>Player Info Page</h1>
+    <ul id="players"></ul>
+
+    <script>
+        fetch("/api/playerspos")
+            .then(response => response.json())
+            .then(data => {
+                const players = document.getElementById("players");
+                Array(data.players).forEach(player => {
+                    const playerName = Object.keys(player)[0];
+                    const coords = player[playerName];
+                    const li = document.createElement("li");
+                    li.innerHTML = playerName + " at <b>X:</b> " + coords.X + " <b>Y:</b> " + coords.Y + " <b>Z:</b> " + coords.Z;
+                    players.appendChild(li);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html>
